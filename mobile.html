@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HHS Lung Models</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #fff8f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            padding: 15px;
+            background: linear-gradient(135deg, #ff7359 0%, #ff8f7a 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header-section h1 {
+            color: white;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .header-subtitle {
+            font-size: 0.9em;
+            color: #ffe2dc;
+        }
+
+        /* Swipeable Features Section */
+        .features-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .key-features {
+            display: inline-flex;
+            padding: 0 10px;
+        }
+
+        .feature {
+            background: white;
+            padding: 15px;
+            margin-right: 15px;
+            border-radius: 10px;
+            min-width: 150px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            color: #ff7359;
+        }
+
+        /* Model Cards Carousel */
+        .model-carousel {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .model-card {
+            display: inline-block;
+            background: white;
+            padding: 15px;
+            margin-right: 15px;
+            border-radius: 10px;
+            min-width: 250px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .view-button {
+            background-color: #ff7359;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .member-avatar {
+            font-size: 1.5em;
+            color: #ff7359;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 95%;
+            height: 95%;
+            margin: 2.5% auto;
+        }
+
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .dot {
+            height: 8px;
+            width: 8px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #ff7359;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 1.2em;
+            color: #ff7359;
+            margin: 15px 0 10px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header-section">
+            <h1>HHS Presentation - 3D Models</h1>
+            <div class="header-subtitle">Interactive Lung Models</div>
+        </header>
+
+        <h2 class="section-header">Features</h2>
+        <div class="features-container">
+            <div class="key-features">
+                <div class="feature">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Interactive Models</h3>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📑</span>
+                    <h3>Research Papers</h3>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📱</span>
+                    <h3>QR Access</h3>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-header">3D Models</h2>
+        <div class="model-carousel">
+            <div class="model-card">
+                <h3>Heart-Lung Machine</h3>
+                <button class="view-button" onclick="openModal('model1')">View Model</button>
+            </div>
+            <div class="model-card">
+                <h3>Lung Anatomy</h3>
+                <button class="view-button" onclick="openModal('model2')">View Model</button>
+            </div>
+            <div class="model-card">
+                <h3>Bronchial Tree</h3>
+                <button class="view-button" onclick="openModal('model3')">View Model</button>
+            </div>
+            <div class="model-card">
+                <h3>Drug Therapy</h3>
+                <button class="view-button" onclick="openModal('model4')">View Model</button>
+            </div>
+        </div>
+
+        <h2 class="section-header">Team Members</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Cynara<br>10694</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Aditya Sable<br>10695</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Aradhya<br>10696</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Dilpreet<br>10697</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Shaurya<br>10698</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Santo<br>10699</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Kushal<br>10700</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Janhvi<br>10701</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Pranay<br>10702</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Armaan<br>10703</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">👤</div>
+                <p>Ved<br>10704</p>
+            </div>
+        </div>
+
+        <!-- Modal windows -->
+        <div id="model1" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('model1')">&times;</span>
+                <div class="sketchfab-embed-wrapper"> 
+                    <iframe title="Heartlung Machine" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true" 
+                        allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        xr-spatial-tracking 
+                        execution-while-out-of-viewport 
+                        execution-while-not-rendered 
+                        web-share 
+                        src="https://sketchfab.com/models/34f7d192bd8d4ca498b5e3d4948101ba/embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="model2" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('model2')">&times;</span>
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Lung animation" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true" 
+                        allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        xr-spatial-tracking 
+                        execution-while-out-of-viewport 
+                        execution-while-not-rendered 
+                        web-share 
+                        src="https://sketchfab.com/models/acbb5f0e16a14179ae4f63c5b6b83ad7/embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="model3" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('model3')">&times;</span>
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Realistic Human Bronchi Alveoli Anatomy" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true" 
+                        allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        xr-spatial-tracking 
+                        execution-while-out-of-viewport 
+                        execution-while-not-rendered 
+                        web-share 
+                        src="https://sketchfab.com/models/f15898fffdca4c5792efb2774ddab372/embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div id="model4" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('model4')">&times;</span>
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Drug Therapy for Asthma and COPD" 
+                        frameborder="0" 
+                        allowfullscreen 
+                        mozallowfullscreen="true" 
+                        webkitallowfullscreen="true" 
+                        allow="autoplay; fullscreen; xr-spatial-tracking" 
+                        xr-spatial-tracking 
+                        execution-while-out-of-viewport 
+                        execution-while-not-rendered 
+                        web-share 
+                        src="https://sketchfab.com/models/fa8aee7211944f58a2234caaeb294549/embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
